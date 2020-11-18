@@ -14,6 +14,23 @@ use yii\filters\VerbFilter;
  */
 class CategoryController extends Controller
 {
+
+    //проверка на админа
+    public function beforeAction($action){
+        
+        if(Yii::$app->user->isGuest ){
+            return $this->redirect(['site/login']);
+         }
+        if( Yii::$app->user->identity->admin == 0){
+             return $this->redirect(['site/404.php']);
+          }
+        if(!parent::beforeAction($action)){
+            return false;
+        }
+        return true;
+    }
+
+
     /**
      * {@inheritdoc}
      */

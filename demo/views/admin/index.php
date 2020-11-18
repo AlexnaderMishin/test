@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 
@@ -8,15 +9,12 @@ $this->title = 'My Yii Application';
 
     <div class="jumbotron">
         <h1>Панель администратора</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>
 
     <div class="body-content">
-
-        
+    <?= Html::a('Управление категориями', ['/category'], ['class' => 'profile-link']) ?>
+    <br>
+    <?= Html::a('Управление заявками', ['/request'], ['class' => 'profile-link']) ?>
 
     </div>
 </div>
