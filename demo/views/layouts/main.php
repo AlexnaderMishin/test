@@ -45,8 +45,8 @@ AppAsset::register($this);
         }else {
             
             if(Yii::$app->user->identity->admin == 1){
-                $menuItems[] = ['label' => 'ЛК администратора', 'url' => ['/admin/index']];
-                
+                $menuItems[] = ['label' => 'ЛК администратора', 'url' => ['/admin']];
+
             }else {
                 $menuItems[] = ['label' => 'ЛК пользователя', 'url' => ['/lk/index']];
             }
