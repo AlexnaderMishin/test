@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 18 2020 г., 22:24
+-- Время создания: Ноя 19 2020 г., 02:47
 -- Версия сервера: 5.6.47
 -- Версия PHP: 7.4.5
 
@@ -32,6 +32,13 @@ CREATE TABLE `category` (
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `category`
+--
+
+INSERT INTO `category` (`id`, `name`) VALUES
+(1, 'первая');
+
 -- --------------------------------------------------------
 
 --
@@ -50,20 +57,38 @@ CREATE TABLE `request` (
   `idUser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `request`
+--
+
+INSERT INTO `request` (`id`, `name`, `description`, `idCategory`, `status`, `timestamp`, `photoBefore`, `photoAfter`, `idUser`) VALUES
+(1, 'Первая заявка', 'описание первой заявки', 1, 'Решена', '0000-00-00 00:00:00', '1.png', NULL, 1),
+(6, 'Вторая заявка', 'описание второй заявки', 1, 'Решена', '2020-11-18 22:57:31', '1.png', NULL, 1),
+(11, 'Третья заявка', 'описание третьей заявка', 1, 'Решена', '2020-11-18 22:58:44', '1.png', NULL, 2),
+(12, 'Четвёртая заявка', 'описание четвёртой заявки', 1, 'Решена', '2020-11-18 22:58:54', '1.png', NULL, 2);
+
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users`
+-- Структура таблицы `user`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `fio` varchar(255) NOT NULL,
-  `login` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `admin` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `user`
+--
+
+INSERT INTO `user` (`id`, `fio`, `username`, `password`, `email`, `admin`) VALUES
+(1, 'главный не админ админович', 'User', '1234', 'qwerty@mail.ru', 0),
+(2, 'главный админ админович', 'admin', '0000', 'qwert123y@mail.ru', 1);
 
 --
 -- Индексы сохранённых таблиц
@@ -85,9 +110,9 @@ ALTER TABLE `request`
   ADD KEY `idUser` (`idUser`);
 
 --
--- Индексы таблицы `users`
+-- Индексы таблицы `user`
 --
-ALTER TABLE `users`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -98,19 +123,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT для таблицы `users`
+-- AUTO_INCREMENT для таблицы `user`
 --
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -121,7 +146,7 @@ ALTER TABLE `users`
 --
 ALTER TABLE `request`
   ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `request_ibfk_2` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `request_ibfk_2` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
