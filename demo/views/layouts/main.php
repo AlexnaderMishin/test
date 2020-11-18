@@ -39,10 +39,11 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Главная', 'url' => ['/site/index']],
-            ['label' => 'Регистрация', 'url' => ['/site/about']],
-            ['label' => 'Авторизация', 'url' => ['/site/contact']],
+            ['label' => 'Профиль', 'url' => ['/lk/index']],
+            ['label' => 'Профиль администратора', 'url' => ['/site/contact']],
+            ['label' => 'Регистрация', 'url' => ['/site/reg']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => 'Авторизация', 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
