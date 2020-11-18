@@ -10,14 +10,14 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
-class AdminController extends Controller
+class LkController extends Controller
 {
     public function beforeAction($action){
         
         if(Yii::$app->user->isGuest ){
             return $this->redirect(['site/login']);
          }
-        if( Yii::$app->user->identity->admin == 0){
+        if( Yii::$app->user->identity->admin == 1){
              return $this->redirect(['site/404.php']);
           }
         if(!parent::beforeAction($action)){

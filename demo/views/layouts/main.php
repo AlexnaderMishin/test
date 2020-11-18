@@ -48,7 +48,7 @@ AppAsset::register($this);
                 $menuItems[] = ['label' => 'ЛК администратора', 'url' => ['/admin']];
 
             }else {
-                $menuItems[] = ['label' => 'ЛК пользователя', 'url' => ['/lk/index']];
+                $menuItems[] = ['label' => 'ЛК пользователя', 'url' => ['/lk']];
             }
             
             
