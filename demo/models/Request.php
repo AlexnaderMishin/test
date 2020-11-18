@@ -18,7 +18,7 @@ use Yii;
  * @property int $idUser
  *
  * @property Category $idCategory0
- * @property Users $idUser0
+ * @property User $idUser0
  */
 class Request extends \yii\db\ActiveRecord
 {
@@ -42,7 +42,7 @@ class Request extends \yii\db\ActiveRecord
             [['timestamp'], 'safe'],
             [['name', 'photoBefore', 'photoAfter'], 'string', 'max' => 255],
             [['idCategory'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['idCategory' => 'id']],
-            [['idUser'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['idUser' => 'id']],
+            [['idUser'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['idUser' => 'id']],
         ];
     }
 
@@ -81,6 +81,6 @@ class Request extends \yii\db\ActiveRecord
      */
     public function getIdUser0()
     {
-        return $this->hasOne(Users::className(), ['id' => 'idUser']);
+        return $this->hasOne(User::className(), ['id' => 'idUser']);
     }
 }
