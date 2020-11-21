@@ -38,7 +38,7 @@ class RequestSearch extends Request
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function searchForUser($params, $idUser)
     {
         $query = Request::find();
 
@@ -61,7 +61,7 @@ class RequestSearch extends Request
             'id' => $this->id,
             'idCategory' => $this->idCategory,
             'timestamp' => $this->timestamp,
-            'idUser' => $this->idUser,
+            'idUser' => $idUser,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

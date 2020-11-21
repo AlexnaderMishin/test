@@ -19,6 +19,14 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'idCategory')->textInput() ?>
 
     <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
+    <?php
+        $items = [
+            
+            'Решена' => 'Решена',
+            'Отклонена' => 'Отклонена',
+        ];
+    ?>
+    <?= $form->field($model, 'status')->dropDownList($items) ?>
 
     <?= $form->field($model, 'timestamp')->textInput() ?>
 

@@ -42,15 +42,18 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     /**
      * {@inheritdoc}
      */
+   
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
-            'fio' => 'Fio',
-            'username' => 'Username',
+            'fio' => 'ФИО',
+            'username' => 'Логин',
             'email' => 'Email',
-            'password' => 'Password',
+            'password' => 'Пароль',
             'admin' => 'Admin',
+            
+            
         ];
     }
 
