@@ -12,7 +12,7 @@ $this->title = 'My Yii Application';
     </div>
 
     <div class="body-content">
-    
+    <?= Html::a('Управление заявками', ['my-requests'], ['class' => 'profile-link']) ?>
 
     </div>
 </div>
