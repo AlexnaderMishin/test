@@ -132,4 +132,8 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionReg(){
+        return $this->render('reg');
+    }
 }
