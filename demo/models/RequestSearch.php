@@ -38,6 +38,40 @@ class RequestSearch extends Request
      *
      * @return ActiveDataProvider
      */
+    public function search($params)
+    {
+        $query = Request::find();
+
+        // add conditions that should always apply here
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'idCategory' => $this->idCategory,
+            'timestamp' => $this->timestamp,
+            'idUser' => $this->idUser,
+        ]);
+
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'status', $this->status])
+            ->andFilterWhere(['like', 'photoBefore', $this->photoBefore])
+            ->andFilterWhere(['like', 'photoAfter', $this->photoAfter]);
+
+        return $dataProvider;
+    }
     public function searchForUser($params, $idUser)
     {
         $query = Request::find();
