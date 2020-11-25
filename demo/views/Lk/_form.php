@@ -10,14 +10,14 @@ use yii\widgets\ActiveForm;
 
 <div class="request-form">
 
-    <?php $form = ActiveForm::begin(); ?>
-
+    
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'idCategory')->dropDownList($categories) ?>
-    <?= $form->field($model, 'photoBefore')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'photoBefore')->fileInput(['maxlength' => true]) ?>
     
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
