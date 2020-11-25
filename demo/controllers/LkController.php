@@ -61,10 +61,7 @@ class LkController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
-    }
-
-    public function actionMyRequests(){
+        // return $this->render('index');
         $searchModel = new RequestSearch();
         $dataProvider = $searchModel->searchForUser(Yii::$app->request->queryParams, Yii::$app->user->identity->id);
 
@@ -73,6 +70,8 @@ class LkController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+
+    
 
 
 
@@ -91,6 +90,19 @@ class LkController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionCreate()
+    {
+        $model = new Request();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
    
 }
