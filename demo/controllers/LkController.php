@@ -11,6 +11,9 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Request;
 use app\models\RequestSearch;
+use app\models\Category;
+use yii\helpers\ArrayHelper;
+
 
 class LkController extends Controller
 {
@@ -100,8 +103,12 @@ class LkController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $categories = Category::find()->orderBy('name')->all();
+        $categories = ArrayHelper::map($categories, 'id', 'name');
+
         return $this->render('create', [
             'model' => $model,
+            'categories' => $categories,
         ]);
     }
    
